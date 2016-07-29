@@ -1,0 +1,22 @@
+{
+    "name": "gacek85/encoding-com-api",
+    "description": "Tiny PHP API driver for sending media to Encoding.com for processing",
+    "homepage": "https://github.com/gacek85/encoding-com-api",
+    "authors": [
+        {
+            "name": "Maciej Garycki",
+            "email": "maciekgarycki@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "license": "BSD-3-Clause",
+    "require": {
+        "php": ">=7.0.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Gacek85\\EncodingCom\\": "src"
+        }
+    },
+    "minimum-stability": "dev"
+}
