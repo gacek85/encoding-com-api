@@ -17,6 +17,8 @@ class AmazonS3Test extends \PHPUnit_Framework_TestCase
     
     const ACCESS_SIGNATURE = 'this-is-a-signature';
     
+    const BUCKET = 'bucket';
+    
     protected $keyring = null;
     
     
@@ -29,15 +31,27 @@ class AmazonS3Test extends \PHPUnit_Framework_TestCase
     public function testGetDestinationPath ()
     {
         $this->assertEquals(
-            $this->getExpected(), 
-            (new S3Destination($this->keyring, $this->getInputPath()))->getDestinationPath()
+            $this->getExpected() . 'acl=public-read', 
+            (new S3Destination($this->keyring, self::BUCKET, $this->getInputPath()))->getDestinationPath()
+        );
+    }
+    
+    
+    public function testGetDestinationPathWithOptions ()
+    {
+        $this->assertEquals(
+            $this->getExpected() . 'acl=public-read-write&amp;content_type=mp4', 
+            (new S3Destination($this->keyring, self::BUCKET, $this->getInputPath(), [
+                'acl' => 'public-read-write',
+                'content_type' => 'mp4'
+            ]))->getDestinationPath()
         );
     }
     
     
     protected function getExpected ()
     {
-        return '';
+        return 'http://this-is-an-access-key:this-is-a-signature@bucket.s3.amazonaws.com/destination/path/to.mp4?';
     }
     
     

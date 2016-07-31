@@ -15,6 +15,8 @@ class AmazonS3 implements DestinationInterface
 {
 
     const QUERY_SEPARATOR = '&amp;';
+    
+    const DESTINATION_PLACEHOLDER = 'http://%s:%s@%s.s3.amazonaws.com/%s';
 
     /**
      *
@@ -24,6 +26,9 @@ class AmazonS3 implements DestinationInterface
     
     
     protected $destinationPath = null;
+    
+    
+    protected $bucket = null;
     
     
     protected $params = [];
@@ -38,6 +43,7 @@ class AmazonS3 implements DestinationInterface
      */
     public function __construct (
         AmazonKeyring $keyring, 
+        string $bucket,
         string $destinationPath, 
         array $params = [
             'acl' => 'public-read'
@@ -45,6 +51,7 @@ class AmazonS3 implements DestinationInterface
     )
     {
         $this->keyring = $keyring;
+        $this->bucket = $bucket;
         $this->destinationPath = $destinationPath;
         $this->params = $params;
     }
@@ -67,14 +74,19 @@ class AmazonS3 implements DestinationInterface
     
     protected function buildDestinationPath (): string
     {
-        return substr_replace(
-            $this->destinationPath,
-            sprintf(
-                '%s:%s@',
-                urlencode($this->keyring->getAccessKeyId()),
-                urlencode($this->keyring->getSignature())
-            ), 7, 0
+        return sprintf(
+            self::DESTINATION_PLACEHOLDER,
+            urlencode($this->keyring->getAccessKeyId()),
+            urlencode($this->keyring->getSignature()),
+            $this->bucket,
+            $this->fixPath($this->destinationPath)
         );
+    }
+    
+    
+    protected function fixPath (string $destinationPath)
+    {
+        return parse_url($destinationPath, PHP_URL_PATH);
     }
     
     
