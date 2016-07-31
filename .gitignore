@@ -1,3 +1,4 @@
 /nbproject
 /phpunit.xml
-/tests/Resources/report
+vendor
+/src/Tests/Resources/report
