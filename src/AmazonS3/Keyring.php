@@ -15,10 +15,13 @@ class Keyring
     
     protected $signature = null;
     
-    public function __construct (string $accessKeyId, string $signature)
+    protected $bucket = null;
+    
+    public function __construct (string $accessKeyId, string $signature, string $bucket = null)
     {
         $this->accessKeyId = $accessKeyId;
         $this->signature = $signature;
+        $this->bucket = $bucket;
     }
     
     /**
@@ -29,6 +32,17 @@ class Keyring
     public function getAccessKeyId (): string 
     {
         return $this->accessKeyId;
+    }
+    
+    
+    /**
+     * Provides stored bucket name
+     * 
+     * @return string|null
+     */
+    public function getBucket ()
+    {
+        return $this->bucket;
     }
     
     
