@@ -148,7 +148,7 @@ class Format extends AbstractRequest implements RequestInterface
         if (!$destination) {
             return $this;
         }
-        $this->addFieldValue('audio_channels_number', $destination->getDestinationPath());
+        $this->addFieldValue('destination', $destination->getDestinationPath());
         return $this;
     }
     
