@@ -40,7 +40,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $output
      * @return      Format
      */
-    public function setOutput (string $output): Format
+    public function setOutput (string $output = null): Format
     {
         $this->addFieldValue('output', $output);
         return $this;
@@ -52,7 +52,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $videoCodec
      * @return      Format
      */
-    public function setViceoCodec (string $videoCodec): Format
+    public function setVideoCodec (string $videoCodec = null): Format
     {
         $this->addFieldValue('video_codec', $videoCodec);
         return $this;
@@ -65,7 +65,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $bitrate
      * @return      Format
      */
-    public function setBitrate (string $bitrate): Format
+    public function setBitrate (string $bitrate = null): Format
     {
         $this->addFieldValue('bitrate', $bitrate);
         return $this;
@@ -78,7 +78,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $size
      * @return      Format
      */
-    public function setSize (string $size): Format
+    public function setSize (string $size = null): Format
     {
         $this->addFieldValue('size', $size);
         return $this;
@@ -91,7 +91,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $audioBitrate
      * @return      Format
      */
-    public function setAudioBitrate (string $audioBitrate): Format
+    public function setAudioBitrate (string $audioBitrate = null): Format
     {
         $this->addFieldValue('audio_bitrate', $audioBitrate);
         return $this;
@@ -104,7 +104,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $audioBitrate
      * @return      Format
      */
-    public function setAudioSampleRate (string $audioBitrate): Format
+    public function setAudioSampleRate (string $audioBitrate = null): Format
     {
         $this->addFieldValue('audio_bitrate', $audioBitrate);
         return $this;
@@ -117,7 +117,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $framerate
      * @return      Format
      */
-    public function setFramerate (string $framerate): Format
+    public function setFramerate (string $framerate = null): Format
     {
         $this->addFieldValue('framerate', $framerate);
         return $this;
@@ -130,7 +130,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $audioChannelsNumber
      * @return      Format
      */
-    public function setAudioChannelsNumber (string $audioChannelsNumber): Format
+    public function setAudioChannelsNumber (string $audioChannelsNumber = null): Format
     {
         $this->addFieldValue('audio_channels_number', $audioChannelsNumber);
         return $this;
@@ -143,8 +143,11 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       DestinationInterface      $destination
      * @return      Format
      */
-    public function setDestination (DestinationInterface $destination): Format
+    public function setDestination (DestinationInterface $destination = null): Format
     {
+        if (!$destination) {
+            return $this;
+        }
         $this->addFieldValue('audio_channels_number', $destination->getDestinationPath());
         return $this;
     }
@@ -156,7 +159,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $keepAspectRatio
      * @return      Format
      */
-    public function setKeepAspectRatio (string $keepAspectRatio): Format
+    public function setKeepAspectRatio (string $keepAspectRatio = null): Format
     {
         $this->addFieldValue('keep_aspect_ratio', $keepAspectRatio);
         return $this;
@@ -169,7 +172,7 @@ class Format extends AbstractRequest implements RequestInterface
      * @param       string      $profile
      * @return      Format
      */
-    public function setProfile (string $profile): Format
+    public function setProfile (string $profile = null): Format
     {
         $this->addFieldValue('profile', $profile);
         return $this;

@@ -92,7 +92,7 @@ class Encoding
      */
     public function reset (): Encoding
     {
-        $this->requestArray = clone $this->initialQuery;
+        $this->requestArray = $this->initialQuery;
         $this->result = null;
         return $this;
     }

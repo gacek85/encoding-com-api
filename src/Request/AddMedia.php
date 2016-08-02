@@ -26,9 +26,9 @@ class AddMedia extends AbstractRequest implements RequestInterface
     public function __construct (array $values)
     {
         $this
-            ->setSource($this->getArrayParam('source', $values))
-            ->addChild('format', new Format())
-            ->setFormats($this->getArrayParam('formats', $values))
+            ->setSource($this->getArrayParam($values, 'source'))
+            ->addChild('format', new Format([]))
+            ->setFormats($this->getArrayParam($values, 'formats'))
         ;
     }
     

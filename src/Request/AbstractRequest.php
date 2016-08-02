@@ -49,10 +49,10 @@ abstract class AbstractRequest implements RequestInterface
      * Adds value for given field map
      * 
      * @param   string          $field
-     * @param   string          $value
+     * @param   mixed           $value
      * @return  AbstractRequest         Implementation of this class
      */
-    public function addFieldValue (string $field, string $value): AbstractRequest
+    public function addFieldValue (string $field, $value = null): AbstractRequest
     {
         $keyMap = explode('.', $field);
         if (!count($keyMap)) {
