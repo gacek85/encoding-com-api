@@ -1,7 +1,7 @@
 <?php
 namespace Gacek85\EncodingCom\Destination;
 
-use Gacek85\EncodingCom\DestinationInterface;
+use Gacek85\EncodingCom\Destination\DestinationInterface;
 use Gacek85\EncodingCom\AmazonS3\Keyring as AmazonKeyring;
 
 /**

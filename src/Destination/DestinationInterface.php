@@ -1,5 +1,5 @@
 <?php
-namespace Gacek85\EncodingCom;
+namespace Gacek85\EncodingCom\Destination;
 
 /**
  *  Defines destination provider behavior

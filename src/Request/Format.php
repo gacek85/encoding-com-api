@@ -1,7 +1,7 @@
 <?php
 namespace Gacek85\EncodingCom\Request;
 
-use Gacek85\EncodingCom\DestinationInterface;
+use Gacek85\EncodingCom\Destination\DestinationInterface;
 use Gacek85\EncodingCom\Request\AbstractRequest;
 use Gacek85\EncodingCom\Request\RequestInterface;
 

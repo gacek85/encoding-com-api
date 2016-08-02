@@ -3,12 +3,12 @@ namespace Gacek85\EncodingCom;
 
 use Gacek85\EncodingCom\Formatter\FormatterInterface;
 use Gacek85\EncodingCom\Formatter\JsonFormatter;
+use Gacek85\EncodingCom\Request\RequestCallInterface;
 use Gacek85\EncodingCom\Request\RequestInterface;
+use Gacek85\EncodingCom\Result\ParserInterface as ResultParserInterface;
 use Gacek85\EncodingCom\Result\ResultInterface;
 use Gacek85\EncodingCom\Validation\Exception as ValidationException;
-use GuzzleHttp\Client;
 use JsonSchema\Validator;
-use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 
 /**
@@ -30,10 +30,6 @@ class Encoding
             'userkey' => null
         ]
     ];
-    
-    
-    
-    protected $resultParser = null;
     
     
     /**
@@ -60,8 +56,29 @@ class Encoding
     protected $validator = null;
     
     
-    public function __construct (string $userId, string $userKey)
+    /**
+     *
+     * @var RequestCallInterface
+     */
+    protected $requestCall = null;
+    
+    
+    /**
+     *
+     * @var ResultParserInterface 
+     */
+    protected $resultParser = null;
+    
+    
+    public function __construct (
+        string $userId, 
+        string $userKey, 
+        RequestCallInterface $requestCall,
+        ResultParserInterface $resultParser
+    )
     {
+        $this->requestCall = $requestCall;
+        $this->resultParser = $resultParser;
         $this->initialQuery['query']['userid'] = $userId;
         $this->initialQuery['query']['userkey'] = $userKey;
         $this->reset();
@@ -90,10 +107,11 @@ class Encoding
     public function request (RequestInterface $request): Encoding
     {
         try {
-            $this
-                ->validate($request)
-                ->call($request)
+            $response = $this
+                                ->validate($request)
+                                ->call($request)             
             ;
+            $this->result = $this->resultParser->parse($response);
         } catch (ValidationException $ex) {
             $this->result = $ex->getResult();
         }
@@ -109,25 +127,10 @@ class Encoding
             $request->getData()
         );
         
-        return $this->doCall($this->requestArray, $this->getFormatter());
-    }
-    
-    
-    private function doCall (array $requestArray, FormatterInterface $formatter)
-    {
-        $response = (new Client())->post(self::URI, [
-            'form_params' => [
-                $formatter->getFormatKey() => urlencode($formatter->formatData($requestArray))
-            ]
-        ]);
-        
-        return $this->processResponse($response);
-    }
-    
-    
-    protected function processResponse (ResponseInterface $response)
-    {
-        
+        return $this
+                    ->requestCall
+                    ->call(self::URI, $this->requestArray, $this->getFormatter())
+        ;
     }
     
     
