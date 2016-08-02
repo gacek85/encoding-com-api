@@ -174,10 +174,17 @@ class Encoding
      */
     protected function getValidator (): Validator
     {
-        return $this->validator ?: new Validator();
+        return $this->validator ?: $this->doGetValidator();
     }
     
-    
+    private function doGetValidator (): Validator 
+    {
+        return $this->validator = new Validator();
+    }
+
+
+
+
     /**
      * Sets custom formatter
      * 
