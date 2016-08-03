@@ -19,4 +19,12 @@ interface ParserInterface
      * @return      ResultInterface
      */
     public function parse ($result): ResultInterface;
+    
+    
+    /**
+     * Provides key for format
+     * 
+     * @return      string
+     */
+    public function getFormatKey (): string;
 }

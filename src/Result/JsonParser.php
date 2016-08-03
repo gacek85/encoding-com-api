@@ -12,6 +12,9 @@ use Gacek85\EncodingCom\Result\ParserInterface;
  */
 class JsonParser extends AbstractParser implements ParserInterface 
 {
+    
+    const CONTENT_TYPE = 'json';
+    
     /**
      * Filters response to array
      * 

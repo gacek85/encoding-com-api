@@ -12,6 +12,7 @@ use Gacek85\EncodingCom\Result\ParserInterface;
  */
 class XMLParser extends AbstractParser implements ParserInterface 
 {
+    const CONTENT_TYPE = 'xml';
     
     /**
      * Filters response to array

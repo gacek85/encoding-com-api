@@ -203,7 +203,7 @@ class Encoding
      * 
      * @return      FormatterInterface
      */
-    protected function getFormatter (): FormatterInterface 
+    public function getFormatter (): FormatterInterface 
     {
         return $this->formatter ?: $this->getDefaultFormatter();
     }

@@ -27,6 +27,7 @@ class AddMedia extends AbstractRequest implements RequestInterface
     {
         $this
             ->setSource($this->getArrayParam($values, 'source'))
+            ->setNotify($this->getArrayParam($values, 'notify'))
             ->addChild('format', new Format([]))
             ->setFormats($this->getArrayParam($values, 'formats'))
         ;
@@ -110,7 +111,11 @@ class AddMedia extends AbstractRequest implements RequestInterface
     public function getScalarJsonSchemaArray (): array
     {
         return [
-            'notify' => ['type' => 'string']
+            'notify' => ['type' => 'string'],
+            'source' => [
+                'type' => 'string',
+                'format' => 'uri'
+            ]
         ];
     }
 

@@ -16,6 +16,16 @@ abstract class AbstractParser implements ParserInterface
 {
     
     /**
+     * Provides key for format
+     * 
+     * @return      string
+     */
+    public function getFormatKey (): string
+    {
+        return static::CONTENT_TYPE;
+    }
+    
+    /**
      * Filters response to array
      * 
      * @param       mixed       $result
