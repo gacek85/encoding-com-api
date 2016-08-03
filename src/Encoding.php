@@ -2,7 +2,7 @@
 namespace Gacek85\EncodingCom;
 
 use Gacek85\EncodingCom\Formatter\FormatterInterface;
-use Gacek85\EncodingCom\Formatter\JsonFormatter;
+use Gacek85\EncodingCom\Formatter\XMLFormatter;
 use Gacek85\EncodingCom\Request\RequestCallInterface;
 use Gacek85\EncodingCom\Request\RequestInterface;
 use Gacek85\EncodingCom\Result\ParserInterface as ResultParserInterface;
@@ -211,6 +211,6 @@ class Encoding
     
     protected function getDefaultFormatter (): FormatterInterface 
     {
-        return new JsonFormatter();
+        return new XMLFormatter();
     }
 }

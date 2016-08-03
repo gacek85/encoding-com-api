@@ -28,7 +28,7 @@ abstract class AbstractRequest implements RequestInterface
     {
         return array_merge([
             'action' => $this->getAction()
-        ],$this->requestArray);
+        ], $this->requestArray);
     }
     
     
