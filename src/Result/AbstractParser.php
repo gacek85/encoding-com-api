@@ -32,7 +32,7 @@ abstract class AbstractParser implements ParserInterface
      * 
      * @return      array
      */
-    abstract protected function toArray ($result): array;
+    abstract public function toArray ($result): array;
     
     
     /**
@@ -57,8 +57,8 @@ abstract class AbstractParser implements ParserInterface
         return !array_key_exists('errors', $response) 
                     ?       new Result($response) 
                     :       $this->getError(array_map(function ($errorArray) {
-                        return $errorArray['error'];
-                    }, $response['errors']))
+                                return $errorArray['error'];
+                            }, $response['errors']))
         ;
     }
     

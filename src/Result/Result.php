@@ -32,7 +32,7 @@ class Result implements ResultInterface
      */
     public function isValid (): bool
     {
-        return (bool)$this->errors;
+        return !(bool)$this->errors;
     }
     
     

@@ -17,6 +17,8 @@ class AmazonS3 implements DestinationInterface
     const QUERY_SEPARATOR = '&amp;';
     
     const DESTINATION_PLACEHOLDER = 'http://%s:%s@%ss3.amazonaws.com/%s';
+    
+    const PUBLIC_PLACEHOLDER = '//%ss3.amazonaws.com/%s';
 
     /**
      *
@@ -62,6 +64,21 @@ class AmazonS3 implements DestinationInterface
             '%s?%s',
             $this->buildDestinationPath(),
             $this->buildParams()
+        );
+    }
+    
+    
+    /**
+     * Returns the public URI to the destination
+     * 
+     * @return      string
+     */
+    public function getPublicUri (): string 
+    {
+        return sprintf(
+            self::PUBLIC_PLACEHOLDER,
+            ($bucket = $this->keyring->getBucket()) ? sprintf('%s.', $bucket) : '',
+            $this->fixPath($this->destinationPath)
         );
     }
     

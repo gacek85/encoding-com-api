@@ -21,12 +21,14 @@ class XMLParser extends AbstractParser implements ParserInterface
      * 
      * @return      array
      */
-    protected function toArray ($result): array
+    public function toArray ($result): array
     {
         $xmlObject = @simplexml_load_string($result, 'SimpleXMLElement', LIBXML_NOCDATA);
         $json = $xmlObject ? json_encode($xmlObject) : null;
         
-        return $json ? json_decode($json, true) : [];
+        return $json ? [
+            'response' => json_decode($json, true)
+        ] : [];
     }
     
 }

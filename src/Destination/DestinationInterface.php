@@ -17,4 +17,12 @@ interface DestinationInterface
      */
     public function getDestinationPath (): string;
     
+    
+    /**
+     * Returns the public URI to the destination
+     * 
+     * @return      string
+     */
+    public function getPublicUri (): string;
+    
 }

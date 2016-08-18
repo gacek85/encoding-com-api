@@ -22,7 +22,7 @@ class JsonParser extends AbstractParser implements ParserInterface
      * 
      * @return      array
      */
-    protected function toArray ($result): array
+    public function toArray ($result): array
     {
         return json_decode($result, true) ?: [];
     }
