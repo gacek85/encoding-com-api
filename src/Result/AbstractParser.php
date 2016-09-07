@@ -56,8 +56,8 @@ abstract class AbstractParser implements ParserInterface
     {
         return !array_key_exists('errors', $response) 
                     ?       new Result($response) 
-                    :       $this->getError(array_map(function ($errorArray) {
-                                return $errorArray['error'];
+                    :       $this->getError(array_map(function ($error) {
+                                return is_string($error) ? $error : $error['error'];
                             }, $response['errors']))
         ;
     }
