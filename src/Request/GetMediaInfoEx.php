@@ -5,20 +5,20 @@ use Gacek85\EncodingCom\Request\AbstractRequest;
 use Gacek85\EncodingCom\Request\RequestInterface;
 
 /**
- *  GetMediaInfo request
+ *  GetMediaInfo request - extended media info for mediaid
  *
  *  @author Maciej Garycki <maciej@neverbland.com>
  *  @company Neverbland
  *  @copyrights Neverbland 2015
  */
-class GetMediaInfo extends AbstractRequest implements RequestInterface
+class GetMediaInfoEx extends AbstractRequest implements RequestInterface
 {
     
-    const ACTION_NAME = 'getMediaInfo';
+    const ACTION_NAME = 'getMediaInfoEx';
     
     
     /**
-     * Constructor for GetMediaInfo.
+     * Constructor for GetMediaInfoEx.
      * 
      * @param       array       $values
      */
